@@ -53,6 +53,7 @@
 
 .field {
   display: grid;
+  align-content: start;
   gap: 0.45rem;
   min-width: 0;
 }
