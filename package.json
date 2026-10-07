@@ -1,0 +1,19 @@
+{
+  "name": "itsrabiadev-portfolio",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Personal portfolio of Rabia Rafique, Senior Full Stack Developer. Static site generated from data + templates.",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "serve": "node scripts/serve.mjs",
+    "dev": "node scripts/build.mjs && node scripts/serve.mjs"
+  },
+  "devDependencies": {
+    "@fontsource-variable/geist": "^5.3.0",
+    "@fontsource-variable/geist-mono": "^5.3.0",
+    "lucide-static": "^1.52.0",
+    "sharp": "^0.35.5",
+    "simple-icons": "^16.34.0"
+  }
+}

@@ -1,0 +1,98 @@
+/* ==========================================================================
+   Design tokens
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('../fonts/geist-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2190-2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('../fonts/geist-mono-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2190-2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Metric-matched fallback keeps layout shift near zero while Geist loads. */
+@font-face {
+  font-family: 'Geist Fallback';
+  src: local('Arial');
+  size-adjust: 104%;
+  ascent-override: 92%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+
+:root {
+  /* Surfaces */
+  --bg: #08080d;
+  --bg-2: #0b0b12;
+  --surface: #111118;
+  --surface-2: #16161f;
+  --surface-3: #1c1c27;
+
+  /* Lines */
+  --line: rgb(255 255 255 / 0.07);
+  --line-2: rgb(255 255 255 / 0.12);
+  --line-accent: rgb(167 139 250 / 0.35);
+
+  /* Text */
+  --text: #ffffff;
+  --text-2: #e5e7eb;
+  --text-3: #9ca3af;
+  --text-4: #8b8f9c; /* AA on --bg for small text */
+
+  /* Accent */
+  --accent-900: #4c1d95;
+  --accent-800: #5b21b6;
+  --accent-700: #6d28d9;
+  --accent-300: #a78bfa;
+  --accent-200: #c4b5fd;
+  --accent-glow: rgb(109 40 217 / 0.35);
+  --ok: #34d399;
+
+  /* Type */
+  --font-sans: 'Geist', 'Geist Fallback', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-md: 1.0625rem;
+  --fs-lg: clamp(1.125rem, 1.05rem + 0.3vw, 1.25rem);
+  --fs-xl: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --fs-2xl: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+  --fs-3xl: clamp(1.875rem, 1.35rem + 2.2vw, 2.875rem);
+  --fs-hero: clamp(2.25rem, 1.5rem + 2.9vw, 3.6rem);
+
+  --lh-tight: 1.08;
+  --lh-snug: 1.25;
+  --lh-body: 1.65;
+
+  /* Space & layout */
+  --container: 1200px;
+  --gutter: clamp(1rem, 0.6rem + 1.8vw, 2rem);
+  --section-y: clamp(4.5rem, 3rem + 6vw, 8rem);
+  --header-h: 68px;
+
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-pill: 999px;
+
+  --shadow-1: 0 1px 0 rgb(255 255 255 / 0.04) inset, 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-2: 0 1px 0 rgb(255 255 255 / 0.05) inset, 0 20px 50px -20px rgb(0 0 0 / 0.7);
+  --shadow-accent: 0 10px 30px -10px rgb(109 40 217 / 0.55);
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 0.25s;
+}

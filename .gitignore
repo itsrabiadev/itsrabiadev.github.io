@@ -1,0 +1,10 @@
+node_modules/
+.playwright-mcp/
+.DS_Store
+Thumbs.db
+.env
+.env.local
+PROJECT.md
+README.md
+CLAUDE.md
+.claude/

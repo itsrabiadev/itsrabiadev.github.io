@@ -1,0 +1,189 @@
+/* ==========================================================================
+   Motion + micro-interaction polish (motion gated on no-preference)
+   ========================================================================== */
+
+/* Animated underline for text links */
+.link-u,
+.site-footer__nav a {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.35s var(--ease), color var(--dur) var(--ease);
+}
+
+.link-u:hover,
+.site-footer__nav a:hover {
+  background-size: 100% 1px;
+}
+
+/* Technology badges / skill groups lift slightly */
+.tech-strip__list li {
+  transition: transform var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.tech-strip__list li:hover {
+  transform: translateY(-2px);
+}
+
+.skill-group {
+  transition: border-color 0.4s var(--ease), transform 0.4s var(--ease);
+}
+
+.skill-group:hover {
+  transform: translateY(-2px);
+}
+
+/* ---------- Hero: editor snippet + floating badges (desktop only) ---------- */
+
+.editor,
+.float-badge {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .editor {
+    display: block;
+    position: absolute;
+    left: -3rem;
+    bottom: -5.5rem;
+    width: min(300px, 78%);
+    overflow: hidden;
+    border: 1px solid var(--line-2);
+    border-radius: var(--r-md);
+    background: rgb(12 12 19 / 0.94);
+    box-shadow: var(--shadow-2);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+
+  .editor__bar {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0.5rem 0.7rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .editor__bar span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 0.14);
+  }
+
+  .editor__bar em {
+    margin-left: 0.5rem;
+    color: var(--text-4);
+    font-style: normal;
+  }
+
+  .editor__code {
+    margin: 0;
+    padding: 0.7rem 0.8rem;
+    color: var(--text-2);
+    line-height: 1.7;
+    white-space: pre;
+    overflow: hidden;
+  }
+
+  .editor__code .ln {
+    display: block;
+  }
+
+  .editor__code i {
+    font-style: normal;
+  }
+
+  .editor__code .k { color: var(--accent-300); }
+  .editor__code .f { color: #7dd3fc; }
+  .editor__code .t { color: #fcd34d; }
+  .editor__code .n { color: #fda4af; }
+
+  .float-badge {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--line-accent);
+    border-radius: var(--r-pill);
+    background: rgb(17 17 24 / 0.92);
+    color: var(--accent-200);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.02em;
+  }
+
+  .float-badge--a { top: -0.9rem; right: 12%; }
+  .float-badge--b { top: 38%; right: -1.6rem; }
+  .float-badge--c { bottom: 5%; right: 8%; }
+}
+
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .float-badge {
+    animation: float 7s ease-in-out infinite alternate;
+  }
+  .float-badge--b { animation-duration: 8.5s; animation-delay: -2s; }
+  .float-badge--c { animation-duration: 9.5s; animation-delay: -4s; }
+
+  .editor__code .ln {
+    opacity: 0;
+    animation: line-in 0.5s var(--ease) forwards;
+  }
+  .editor__code .ln:nth-child(1) { animation-delay: 1.1s; }
+  .editor__code .ln:nth-child(2) { animation-delay: 1.35s; }
+  .editor__code .ln:nth-child(3) { animation-delay: 1.6s; }
+  .editor__code .ln:nth-child(4) { animation-delay: 1.85s; }
+  .editor__code .ln:nth-child(5) { animation-delay: 2.1s; }
+}
+
+@keyframes float {
+  to { transform: translate3d(0, -8px, 0); }
+}
+
+@keyframes line-in {
+  from { opacity: 0; transform: translateX(-6px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Page enter */
+  body {
+    animation: page-in 0.5s var(--ease) both;
+  }
+
+  /* Header becomes slightly more compact once scrolled */
+  .site-header__inner {
+    transition: height 0.35s var(--ease);
+  }
+  .site-header.is-scrolled:not(.is-open) .site-header__inner {
+    height: 58px;
+  }
+
+  /* Button press feedback */
+  .btn:active {
+    transform: translateY(1px) scale(0.985);
+  }
+
+  /* Slow grid drift behind the hero (in addition to the existing glow drift) */
+  .hero__bg::before {
+    animation: grid-pan 40s linear infinite;
+  }
+
+  /* Experience timeline: nodes settle in as each role reveals */
+  .js .role__node {
+    transform: scale(0.6);
+    transition: transform 0.6s var(--ease) 0.15s;
+  }
+  .js .role.is-visible .role__node {
+    transform: none;
+  }
+}
+
+@keyframes page-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes grid-pan {
+  to { background-position: 64px 64px, 64px 64px; }
+}

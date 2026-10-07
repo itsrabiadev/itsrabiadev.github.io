@@ -1,0 +1,214 @@
+/* ==========================================================================
+   Contact split layout + form
+   ========================================================================== */
+
+.contact-split {
+  display: grid;
+  gap: clamp(2.5rem, 2rem + 3vw, 4rem);
+}
+
+.contact-split__info {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: 1rem;
+}
+
+.contact-split__info .contact-list {
+  align-content: start;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.contact-split__form {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(1.25rem, 0.8rem + 2vw, 2.25rem);
+  border: 1px solid var(--line-accent);
+  border-radius: calc(var(--r-lg) + 4px);
+  background: linear-gradient(160deg, #15122a 0%, #0e0d18 55%, var(--bg-2) 100%);
+}
+
+@media (min-width: 1024px) {
+  .contact-split {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    align-items: start;
+  }
+}
+
+.contact-form__grid {
+  display: grid;
+  gap: 1.1rem;
+}
+
+@media (min-width: 640px) {
+  .contact-form__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .contact-form__grid .field--wide {
+    grid-column: 1 / -1;
+  }
+}
+
+.field {
+  display: grid;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.field__label {
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+}
+
+.field__req {
+  color: var(--accent-300);
+}
+
+.input {
+  width: 100%;
+  min-height: 46px;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-sm);
+  background: rgb(255 255 255 / 0.03);
+  color: var(--text);
+  font: inherit;
+  font-size: var(--fs-base);
+  transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+.input::placeholder {
+  color: var(--text-4);
+}
+
+.input:hover {
+  border-color: rgb(255 255 255 / 0.22);
+}
+
+.input:focus,
+.input:focus-visible {
+  outline: none;
+  border-color: var(--accent-300);
+  background: rgb(109 40 217 / 0.08);
+  box-shadow: 0 0 0 3px rgb(167 139 250 / 0.2);
+}
+
+.input[aria-invalid='true'] {
+  border-color: #f87171;
+}
+
+.input[aria-invalid='true']:focus {
+  box-shadow: 0 0 0 3px rgb(248 113 113 / 0.2);
+}
+
+.input--area {
+  min-height: 140px;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+.input--select {
+  appearance: none;
+  padding-right: 2.5rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.8rem center;
+}
+
+.input--select option {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.field__error {
+  color: #fca5a5;
+  font-size: var(--fs-xs);
+}
+
+.contact-form__foot {
+  margin-top: 1.5rem;
+}
+
+.contact-form__foot .btn {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .contact-form__foot .btn {
+    width: auto;
+  }
+}
+
+.btn[disabled] {
+  cursor: progress;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.spinner {
+  display: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgb(255 255 255 / 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+}
+
+.is-sending .spinner {
+  display: inline-block;
+}
+
+.is-sending [data-submit-arrow] {
+  display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .is-sending .spinner {
+    animation: spin 0.7s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.form-status {
+  margin-top: 1rem;
+  border-radius: var(--r-sm);
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+}
+
+.form-status:empty {
+  display: none;
+}
+
+.form-status.is-success,
+.form-status.is-error {
+  padding: 0.85rem 1rem;
+  border: 1px solid;
+}
+
+.form-status.is-success {
+  border-color: rgb(52 211 153 / 0.35);
+  background: rgb(52 211 153 / 0.08);
+  color: #a7f3d0;
+}
+
+.form-status.is-error {
+  border-color: rgb(248 113 113 / 0.4);
+  background: rgb(248 113 113 / 0.08);
+  color: #fecaca;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .form-status.is-success,
+  .form-status.is-error {
+    animation: hero-in 0.5s var(--ease) both;
+  }
+}
